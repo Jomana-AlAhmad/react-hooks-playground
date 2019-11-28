@@ -7,7 +7,8 @@ function Main () {
 
     useEffect(() => {
         fetchData().then(response => setData(response.data));
-    });
+    }, []);
+    
         return (
             <MainWrapper>
                 <h2>EX4_useEffect_basic</h2>
