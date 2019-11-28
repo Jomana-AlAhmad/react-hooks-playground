@@ -1,27 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MainWrapper } from './Main.style';
 import fetchData from '../../services/APIService';
 
-class Main extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: {}
-        };
-    }
+function Main () {
+    const [data, setData] = useState({});
 
-    componentDidMount() {
-        fetchData().then(response => this.setState({ data: response.data }));
-    }
-
-    render() {
+    useEffect(() => {
+        fetchData().then(response => setData(response.data));
+    });
         return (
             <MainWrapper>
                 <h2>EX4_useEffect_basic</h2>
-                <p>{`the data is: ${JSON.stringify(this.state.data)}`}</p>
+                <p>{`the data is: ${JSON.stringify(data)}`}</p>
             </MainWrapper>
         );
     }
-}
 
 export default Main;
